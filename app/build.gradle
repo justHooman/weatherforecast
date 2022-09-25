@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id "kotlin-parcelize"
+    id 'kotlin-kapt'
+    id "dagger.hilt.android.plugin"
 }
 
 apply from: "${rootDir}/gradle/props.ext.gradle"
@@ -16,6 +19,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField 'String', "OPEN_WEATHER_MAP_BASE_URL", '"https://api.openweathermap.org"'
+        buildConfigField 'String', "OPEN_WEATHER_MAP_APPID", "\"${getProp('OPEN_WEATHER_MAP_APPID')}\""
     }
 
     def debugKeyStore = getPropOrDefault(
@@ -81,15 +86,43 @@ android {
 
 dependencies {
 
-    implementation("com.google.code.gson:gson:2.9.1")
+    implementation("com.google.code.gson:gson:${libs.versions.gson}")
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
-    implementation 'com.google.android.material:material:1.6.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation "com.squareup.retrofit2:retrofit:${libs.versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${libs.versions.retrofit}"
+    implementation("com.squareup.okhttp3:logging-interceptor:${libs.versions.retrofit_logging}")
+
+    // ## LifeCycle
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${libs.versions.lifecycle}"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${libs.versions.lifecycle}"
+    // Saved state module for ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:${libs.versions.lifecycle}"
+    // Annotation processor
+    kapt "androidx.lifecycle:lifecycle-compiler:${libs.versions.lifecycle}"
+    // optional - ProcessLifecycleOwner provides a lifecycle for the whole application process
+    implementation "androidx.lifecycle:lifecycle-process:${libs.versions.lifecycle}"
+    // optional - Test helpers for LiveData
+    testImplementation "androidx.arch.core:core-testing:${libs.versions.arch}"
+    // optional - Test helpers for Lifecycle runtime
+    testImplementation "androidx.lifecycle:lifecycle-runtime-testing:${libs.versions.lifecycle}"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${libs.versions.kotlin_coroutines}"
+
+    // Hilt
+    implementation "com.google.dagger:hilt-android:${libs.versions.hilt}"
+    kapt "com.google.dagger:hilt-compiler:${libs.versions.hilt}"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:${libs.versions.hilt}"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:${libs.versions.hilt}"
+
+    implementation "androidx.core:core-ktx:${libs.versions.androidx.core}"
+    implementation "androidx.appcompat:appcompat:${libs.versions.androidx.appcompat}"
+    implementation "com.google.android.material:material:${libs.versions.androidx.material}"
+    implementation "androidx.constraintlayout:constraintlayout:${libs.versions.androidx.constraint}"
+    implementation "androidx.navigation:navigation-fragment-ktx:${libs.versions.androidx.navigation}"
+    implementation "androidx.navigation:navigation-ui-ktx:${libs.versions.androidx.navigation}"
+    testImplementation "junit:junit:${libs.versions.junit}"
+    androidTestImplementation "androidx.test.ext:junit:${libs.versions.androidx.junit}"
+    androidTestImplementation "androidx.test.espresso:espresso-core:${libs.versions.androidx.expresso}"
 }

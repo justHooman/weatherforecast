@@ -33,3 +33,10 @@ set environment/ or project variables for these keys below:
           WEATHER_APP_ANDROID_RELEASE_KEY_STORE
           WEATHER_APP_ANDROID_RELEASE_PASS_FILE
           ```
+
+  2. Open Weather Map
+  - set env for appID of openweathermap api
+    ```
+    OPEN_WEATHER_MAP_APPID
+    ```
+
