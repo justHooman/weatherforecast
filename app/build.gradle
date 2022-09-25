@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+apply from: "${rootDir}/gradle/props.ext.gradle"
+
 android {
     compileSdk 32
 
@@ -16,10 +18,53 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    def debugKeyStore = getPropOrDefault(
+            "WEATHER_APP_ANDROID_DEBUG_KEYSTORE",
+            "${getProp("HOME")}/.android/debug.keystore"
+    )
+    def debugKeyPassFile = getPropOrDefault("WEATHER_APP_ANDROID_DEBUG_KEY_PASS", "$rootDir/app/.keys/debug/keys-pass")
+
+    signingConfigs {
+        debug {
+            def keysPass = file(debugKeyPassFile).readLines()
+            storeFile file(debugKeyStore)
+            storePassword keysPass.get(0)
+            keyAlias keysPass.get(1)
+            keyPassword keysPass.get(2)
+        }
+        release {
+            // Caution! DO NOT commit raw value of release key to git
+            def keyFile = getProp("WEATHER_APP_ANDROID_RELEASE_KEY_STORE")
+            def keyPassFile = getProp("WEATHER_APP_ANDROID_RELEASE_PASS_FILE")
+            def isCI = getProp("CI")
+            if (keyFile == "" || keyPassFile == "") {
+                if (isCI == '1') {
+                    keyFile = debugKeyStore
+                    keyPassFile = debugKeyPassFile
+                } else {
+                    throw new GradleException(
+                            "No value for env key: 'WEATHER_APP_ANDROID_RELEASE_KEY_STORE' " +
+                                    "or 'WEATHER_APP_ANDROID_RELEASE_PASS_FILE'." +
+                                    "\nFor local build and use debug key, set env key 'CI' to 1"
+                    )
+                }
+            }
+            def keysPass = file(keyPassFile).readLines()
+            storeFile file(keyFile)
+            storePassword keysPass.get(0)
+            keyAlias keysPass.get(1)
+            keyPassword keysPass.get(2)
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
