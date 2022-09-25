@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Weather Forecast</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="daily_forecast_fragment_label">Daily Forecast Fragment</string>
+
+    <string name="daily_forecast_search_hint">Enter name of the city here</string>
+    <string name="daily_forecast_btn_get_weather">Get Weather</string>
+</resources>

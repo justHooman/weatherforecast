@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF008B78</color>
+    <color name="colorPrimaryVariant">#FF005C4E</color>
+    <!-- Secondary brand color. -->
+    <color name="colorSecondary">#FF008B78</color>
+    <color name="colorSecondaryVariant">#FF005C4E</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="daily_forecast_button_text_color">@color/black</color>
+    <color name="daily_forecast_button_background_color">#DCDEDD</color>
+    <color name="daily_forecast_item_view_text_color">#969696</color>
+    <color name="daily_forecast_item_view_divider_color">#C7C7C7</color>
+</resources>

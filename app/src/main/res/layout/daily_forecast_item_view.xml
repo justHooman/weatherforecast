@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textview_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/daily_forecast_item_view_text_color"
+        app:layout_constraintBottom_toTopOf="@+id/textview_avg_temperature"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/date/ddmmyy" />
+
+    <TextView
+        android:id="@+id/textview_avg_temperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/daily_forecast_item_view_text_color"
+        app:layout_constraintBottom_toTopOf="@+id/textview_pressure"
+        app:layout_constraintTop_toBottomOf="@+id/textview_date"
+        tools:text="@tools:sample/cities" />
+
+    <TextView
+        android:id="@+id/textview_pressure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/daily_forecast_item_view_text_color"
+        app:layout_constraintBottom_toTopOf="@+id/textview_humidity"
+        app:layout_constraintTop_toBottomOf="@+id/textview_avg_temperature"
+        tools:text="@tools:sample/cities" />
+
+    <TextView
+        android:id="@+id/textview_humidity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/daily_forecast_item_view_text_color"
+        app:layout_constraintBottom_toTopOf="@+id/textview_description"
+        app:layout_constraintTop_toBottomOf="@+id/textview_pressure"
+        tools:text="@tools:sample/cities" />
+
+    <TextView
+        android:id="@+id/textview_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/daily_forecast_item_view_text_color"
+        app:layout_constraintTop_toBottomOf="@+id/textview_humidity"
+        tools:text="@tools:sample/cities" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
