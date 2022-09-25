@@ -1,0 +1,1 @@
+## App use open weather api to get daily forecast 
