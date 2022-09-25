@@ -5,5 +5,5 @@ import com.google.gson.annotations.SerializedName
 
 data class Temp(
   @SerializedName("day")
-  val day: Double? = null
+  val day: Double? = 0.0
 )

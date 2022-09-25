@@ -3,15 +3,15 @@ package au.com.nab.justhooman.weatherforecast.dailyforecast.api.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class DailyForecast(
+data class DailyForecast (
   @SerializedName("dt")
-  val dt: Int? = null,
+  val dt: Long? = 0L,
   @SerializedName("humidity")
-  val humidity: Int? = null,
+  val humidity: Int? = 0,
   @SerializedName("pressure")
-  val pressure: Double? = null,
+  val pressure: Int? = 0,
   @SerializedName("temp")
-  val temp: Temp? = null,
+  val temp: Temp? = Temp(),
   @SerializedName("weather")
-  val weather: List<Weather?>? = null
+  val weather: List<Weather>? = listOf()
 )

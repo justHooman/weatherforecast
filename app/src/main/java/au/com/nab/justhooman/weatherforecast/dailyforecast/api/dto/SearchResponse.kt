@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class SearchResponse(
   @SerializedName("cod")
-  val cod: String? = null,
+  val cod: String? = "",
   @SerializedName("list")
-  val list: List<DailyForecast>? = null
+  val list: List<DailyForecast>? = listOf()
 )

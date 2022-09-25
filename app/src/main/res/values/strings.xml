@@ -3,6 +3,13 @@
     <!-- Strings used for fragments for navigation -->
     <string name="daily_forecast_fragment_label">Daily Forecast Fragment</string>
 
-    <string name="daily_forecast_search_hint">Enter name of the city here</string>
+    <string name="daily_forecast_search_hint">Format: \'cityname(, day=1, unit=c|f|k)\'. parts in () are optional.</string>
     <string name="daily_forecast_btn_get_weather">Get Weather</string>
+    <string name="daily_forecast_warning_input_min_length">Please enter at least %d characters for city name</string>
+    <string name="daily_forecast_warning_common_error">Error occur!! Recheck your input spelling or network connection.</string>
+    <string name="daily_forecast_item_view_date">Date: %s</string>
+    <string name="daily_forecast_item_view_avg_temperature">Average temperature: %.1f%s</string>
+    <string name="daily_forecast_item_view_pressure">Pressure: %.0f</string>
+    <string name="daily_forecast_item_view_humidity">Humidity: %d%%</string>
+    <string name="daily_forecast_item_view_description">Description: %s</string>
 </resources>

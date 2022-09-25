@@ -10,6 +10,7 @@ apply from: "${rootDir}/gradle/props.ext.gradle"
 
 android {
     compileSdk 32
+    buildToolsVersion "32.1.0-rc1"
 
     defaultConfig {
         applicationId "au.com.nab.justhooman.weatherforecast"
@@ -64,10 +65,13 @@ android {
 
     buildTypes {
         debug {
+            debuggable true
             signingConfig signingConfigs.debug
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
+
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
