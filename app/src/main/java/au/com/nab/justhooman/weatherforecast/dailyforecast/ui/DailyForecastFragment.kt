@@ -12,12 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import au.com.nab.justhooman.weatherforecast.BuildConfig
 import au.com.nab.justhooman.weatherforecast.R
 import au.com.nab.justhooman.weatherforecast.dailyforecast.data.Config
-import au.com.nab.justhooman.weatherforecast.dailyforecast.data.SearchInput
-import au.com.nab.justhooman.weatherforecast.dailyforecast.data.TemperatureUnit
 import au.com.nab.justhooman.weatherforecast.dailyforecast.ui.adapter.DailyForecastAdapter
+import au.com.nab.justhooman.weatherforecast.dailyforecast.ui.adapter.toSearchInput
 import au.com.nab.justhooman.weatherforecast.dailyforecast.viewmodels.DailyForecastViewModel
 import au.com.nab.justhooman.weatherforecast.databinding.DailyForecastFragmentBinding
 import com.google.android.material.snackbar.Snackbar
@@ -99,28 +97,6 @@ class DailyForecastFragment : Fragment() {
         }
     }
 
-    private fun String.toSearchInput(): SearchInput {
-        val queries = this.split(",").map { it.trim() }
-        val query = queries.firstOrNull().orEmpty()
-        val countPrefix = "day="
-        val count = queries.firstOrNull { it.startsWith(countPrefix) }
-            ?.substring(countPrefix.length)?.toIntOrNull() ?: Config.queryDayDefault
-        val unitPrefix = "unit="
-        val unit = queries.firstOrNull { it.startsWith(unitPrefix) }
-            ?.substring(unitPrefix.length).let { unit ->
-                when (unit) {
-                    "c" -> TemperatureUnit.Celsius
-                    "f" -> TemperatureUnit.Fahrenheit
-                    else -> TemperatureUnit.Kelvin
-                }
-            }
-        return SearchInput(
-            appId =  BuildConfig.OPEN_WEATHER_MAP_APPID,
-            query = query,
-            count = count,
-            units = unit
-        )
-    }
 
     private fun hideKeyBoard(view: View) {
         binding.textviewSearch.apply {

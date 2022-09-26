@@ -109,10 +109,12 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-process:${libs.versions.lifecycle}"
     // optional - Test helpers for LiveData
     testImplementation "androidx.arch.core:core-testing:${libs.versions.arch}"
+    androidTestImplementation "androidx.arch.core:core-testing:${libs.versions.arch}"
     // optional - Test helpers for Lifecycle runtime
     testImplementation "androidx.lifecycle:lifecycle-runtime-testing:${libs.versions.lifecycle}"
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${libs.versions.kotlin_coroutines}"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:${libs.versions.kotlin_coroutines}"
 
     // Hilt
     implementation "com.google.dagger:hilt-android:${libs.versions.hilt}"
@@ -127,6 +129,7 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:${libs.versions.androidx.navigation}"
     implementation "androidx.navigation:navigation-ui-ktx:${libs.versions.androidx.navigation}"
     testImplementation "junit:junit:${libs.versions.junit}"
+    testImplementation "org.mockito:mockito-core:${libs.versions.mokito}"
     androidTestImplementation "androidx.test.ext:junit:${libs.versions.androidx.junit}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${libs.versions.androidx.expresso}"
 }

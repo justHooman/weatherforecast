@@ -18,6 +18,7 @@ versions.hilt = "2.38.1"
 versions.junit = "4.13.2"
 versions.kotlin_coroutines = "1.6.1"
 versions.lifecycle = "2.5.1"
+versions.mokito = "3.6.28"
 versions.retrofit = "2.9.0"
 versions.retrofit_logging = "4.10.0"
 
